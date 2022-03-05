@@ -1,6 +1,7 @@
 import React, { Fragment } from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
+import { Link } from "react-router-dom";
 import {
   Grid,
   Typography,
@@ -16,6 +17,9 @@ import WaveBorder from "../../../shared/components/WaveBorder";
 import ZoomImage from "../../../shared/components/ZoomImage";
 
 const styles = (theme) => ({
+  noDecoration: {
+    textDecoration: "none !important"
+  },
   extraLargeButtonLabel: {
     fontSize: theme.typography.body1.fontSize,
     [theme.breakpoints.up("sm")]: {
@@ -66,7 +70,7 @@ const styles = (theme) => ({
   },
   wrapper: {
     position: "relative",
-    backgroundColor: theme.palette.secondary.main,
+    backgroundColor: theme.palette.primary.main,
     paddingBottom: theme.spacing(2),
   },
   image: {
@@ -123,30 +127,33 @@ function HeadSection(props) {
                         <Typography
                           variant={isWidthUp("lg", width) ? "h3" : "h4"}
                         >
-                          Free Template for building a SaaS app using
-                          Material-UI
+                          Carbon Footprint Calculator
                         </Typography>
                       </Box>
                       <div>
                         <Box mb={2}>
                           <Typography
-                            variant={isWidthUp("lg", width) ? "h6" : "body1"}
-                            color="textSecondary"
+                            variant={isWidthUp("lg", width) ? "h4" : "body1"}
+                            color="secondary"
                           >
-                            Lorem ipsum dolor sit amet, consetetur sadipscing
-                            elitr, sed diam nonumy eirmod tempor invidunt
+                            Find out your impact on the environment!
                           </Typography>
                         </Box>
+                        <Link
+                          key={"Calculator"}
+                          to={"/calculate"}
+                          className={classes.noDecoration}
+                        >
                         <Button
                           variant="contained"
                           color="secondary"
                           fullWidth
                           className={classes.extraLargeButton}
                           classes={{ label: classes.extraLargeButtonLabel }}
-                          href="https://github.com/dunky11/react-saas-template"
                         >
-                          Download from GitHub
+                          Get Started
                         </Button>
+                        </Link>
                       </div>
                     </Box>
                   </Grid>
@@ -166,7 +173,7 @@ function HeadSection(props) {
         </div>
       </div>
       <WaveBorder
-        upperColor={theme.palette.secondary.main}
+        upperColor={theme.palette.primary.main}
         lowerColor="#FFFFFF"
         className={classes.waveBorder}
         animationNegativeDelay={2}

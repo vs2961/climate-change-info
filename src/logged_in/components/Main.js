@@ -53,6 +53,9 @@ function Main(props) {
   const [isAddBalanceDialogOpen, setIsAddBalanceDialogOpen] = useState(false);
   const [pushMessageToSnackbar, setPushMessageToSnackbar] = useState(null);
 
+  const [balance, setBalance] = useState(5000);
+
+
   const fetchRandomTargets = useCallback(() => {
     const targets = [];
     for (let i = 0; i < 35; i += 1) {
@@ -87,6 +90,7 @@ function Main(props) {
     setIsAddBalanceDialogOpen(false);
   }, [pushMessageToSnackbar, setIsAddBalanceDialogOpen]);
 
+
   const fetchRandomStatistics = useCallback(() => {
     const statistics = { profit: [], views: [] };
     const iterations = 300;
@@ -116,34 +120,34 @@ function Main(props) {
     const oneMonthSeconds = Math.round(60 * 60 * 24 * 30.5);
     const transactionTemplates = [
       {
-        description: "Starter subscription",
+        description: "Used Public Transportation",
         isSubscription: true,
-        balanceChange: -1499,
+        balanceChange: 0.161,
       },
       {
-        description: "Premium subscription",
+        description: "Drove in a car",
         isSubscription: true,
-        balanceChange: -2999,
+        balanceChange: 0.435,
       },
       {
-        description: "Business subscription",
+        description: "Flew on an airplane",
         isSubscription: true,
-        balanceChange: -4999,
+        balanceChange: 286.88,
       },
       {
-        description: "Tycoon subscription",
+        description: "Monthly Electricity",
         isSubscription: true,
-        balanceChange: -9999,
+        balanceChange: 0.214,
       },
       {
-        description: "Added funds",
+        description: "Donated to Green Cause",
         isSubscription: false,
-        balanceChange: 2000,
+        balanceChange: -2000,
       },
       {
-        description: "Added funds",
+        description: "Bought package from Amazon",
         isSubscription: false,
-        balanceChange: 5000,
+        balanceChange: 0.0358,
       },
     ];
     let curUnix = Math.round(
@@ -231,7 +235,7 @@ function Main(props) {
 
   const selectDashboard = useCallback(() => {
     smoothScrollTop();
-    document.title = "WaVer - Dashboard";
+    document.title = "Calculator";
     setSelectedTab("Dashboard");
     if (!hasFetchedCardChart) {
       setHasFetchedCardChart(true);
@@ -248,7 +252,7 @@ function Main(props) {
 
   const selectPosts = useCallback(() => {
     smoothScrollTop();
-    document.title = "WaVer - Posts";
+    document.title = "Climate Change Calculator";
     setSelectedTab("Posts");
     if (!hasFetchedEmojiTextArea) {
       setHasFetchedEmojiTextArea(true);
@@ -328,6 +332,7 @@ function Main(props) {
         selectedTab={selectedTab}
         messages={messages}
         openAddBalanceDialog={openAddBalanceDialog}
+        balance={balance}
       />
       <ConsecutiveSnackbarMessages
         getPushMessageFromChild={getPushMessageFromChild}
@@ -352,6 +357,7 @@ function Main(props) {
           openAddBalanceDialog={openAddBalanceDialog}
           setTargets={setTargets}
           setPosts={setPosts}
+          setBalance={setBalance}
         />
       </main>
     </Fragment>

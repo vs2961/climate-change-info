@@ -127,7 +127,7 @@ const styles = (theme) => ({
 });
 
 function NavBar(props) {
-  const { selectedTab, messages, classes, width, openAddBalanceDialog } = props;
+  const { selectedTab, messages, classes, width, openAddBalanceDialog, balance } = props;
   // Will be use to make website more accessible by screen readers
   const links = useRef([]);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
@@ -182,24 +182,24 @@ function NavBar(props) {
         mobile: <ImageIcon className="text-white" />,
       },
     },
-    {
-      link: "/c/subscription",
-      name: "Subscription",
-      onClick: closeMobileDrawer,
-      icon: {
-        desktop: (
-          <AccountBalanceIcon
-            className={
-              selectedTab === "Subscription"
-                ? classes.textPrimary
-                : "text-white"
-            }
-            fontSize="small"
-          />
-        ),
-        mobile: <AccountBalanceIcon className="text-white" />,
-      },
-    },
+    // {
+    //   link: "/c/subscription",
+    //   name: "Subscription",
+    //   onClick: closeMobileDrawer,
+    //   icon: {
+    //     desktop: (
+    //       <AccountBalanceIcon
+    //         className={
+    //           selectedTab === "Subscription"
+    //             ? classes.textPrimary
+    //             : "text-white"
+    //         }
+    //         fontSize="small"
+    //       />
+    //     ),
+    //     mobile: <AccountBalanceIcon className="text-white" />,
+    //   },
+    // },
     {
       link: "/",
       name: "Logout",
@@ -228,22 +228,30 @@ function NavBar(props) {
               </Box>
             </Hidden>
             <Hidden xsDown>
-              <Typography
-                variant="h4"
-                className={classes.brandText}
-                display="inline"
-                color="primary"
-              >
-                Wa
-              </Typography>
-              <Typography
-                variant="h4"
-                className={classes.brandText}
-                display="inline"
-                color="secondary"
-              >
-                Ver
-              </Typography>
+            <Typography
+              variant="h4"
+              className={classes.brandText}
+              display="inline"
+              color="primary"
+            >
+              #Fight
+            </Typography>
+            <Typography
+              variant="h4"
+              className={classes.brandText}
+              display="inline"
+              color="secondary"
+            >
+              Climate
+            </Typography>
+            <Typography
+              variant="h4"
+              className={classes.brandText}
+              display="inline"
+              color="primary"
+            >
+              Change
+            </Typography>
             </Hidden>
           </Box>
           <Box
@@ -255,7 +263,7 @@ function NavBar(props) {
             {isWidthUp("sm", width) && (
               <Box mr={3}>
                 <Balance
-                  balance={2573}
+                  balance={balance}
                   openAddBalanceDialog={openAddBalanceDialog}
                 />
               </Box>

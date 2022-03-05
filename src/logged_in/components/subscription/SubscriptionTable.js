@@ -56,11 +56,11 @@ const rows = [
     numeric: false,
     label: "Date"
   },
-  {
-    id: "paidUntil",
-    numeric: false,
-    label: "Paid until"
-  }
+  // {
+  //   id: "paidUntil",
+  //   numeric: false,
+  //   label: "Paid until"
+  // }
 ];
 
 const rowsPerPage = 25;
@@ -96,26 +96,24 @@ function SubscriptionTable(props) {
                   <TableCell component="th" scope="row">
                     {transaction.balanceChange > 0 ? (
                       <ColorfulChip
-                        label={`+${currencyPrettyPrint(
-                          transaction.balanceChange
-                        )}`}
-                        color={theme.palette.secondary.main}
+                        label={"+" + transaction.balanceChange + " kg CO2/year"}
+                        color={theme.palette.error.dark}
                       />
                     ) : (
                       <ColorfulChip
-                        label={currencyPrettyPrint(transaction.balanceChange)}
-                        color={theme.palette.error.dark}
+                        label={transaction.balanceChange + " kg CO2/year"}
+                        color={theme.palette.secondary.main}
                       />
                     )}
                   </TableCell>
                   <TableCell component="th" scope="row">
                     {unixToDateString(transaction.timestamp)}
                   </TableCell>
-                  <TableCell component="th" scope="row">
+                  {/* <TableCell component="th" scope="row">
                     {transaction.paidUntil
                       ? unixToDateString(transaction.paidUntil)
                       : ""}
-                  </TableCell>
+                  </TableCell> */}
                 </TableRow>
               ))}
           </TableBody>

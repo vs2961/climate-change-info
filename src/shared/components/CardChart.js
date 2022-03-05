@@ -58,7 +58,7 @@ function CardChart(props) {
 
   const formatter = useCallback(
     (value) => {
-      return [value, title];
+      return [value + " kg CO2/year", title];
     },
     [title]
   );

@@ -1,7 +1,7 @@
 import React, { useState, useCallback, useEffect } from "react";
 import PropTypes from "prop-types";
-import PostContent from "./PostContent";
-import AddPost from "./AddPost";
+import Transactions from "./Transactions";
+import Calculator from "./Calculator";
 
 function Posts(props) {
   const {
@@ -13,6 +13,8 @@ function Posts(props) {
     pushMessageToSnackbar,
     posts,
     setPosts,
+    setBalance,
+    transactions,
   } = props;
   const [isAddPostPaperOpen, setIsAddPostPaperOpen] = useState(false);
 
@@ -29,20 +31,22 @@ function Posts(props) {
   }, [selectPosts]);
 
   if (isAddPostPaperOpen) {
-    return <AddPost
+    return <Calculator
       onClose={closeAddPostModal}
       EmojiTextArea={EmojiTextArea}
       ImageCropper={ImageCropper}
       Dropzone={Dropzone}
       DateTimePicker={DateTimePicker}
       pushMessageToSnackbar={pushMessageToSnackbar}
+      setBalance={setBalance}
     />
   }
-  return <PostContent
+  return <Transactions
     openAddPostModal={openAddPostModal}
     posts={posts}
     setPosts={setPosts}
     pushMessageToSnackbar={pushMessageToSnackbar}
+    transactions={transactions}
   />
 }
 

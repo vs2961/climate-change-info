@@ -8,7 +8,7 @@ function SettingsArea(props) {
   return (
     <Fragment>
       <Settings1 pushMessageToSnackbar={pushMessageToSnackbar} />
-      <Settings2 pushMessageToSnackbar={pushMessageToSnackbar} />
+      {/* <Settings2 pushMessageToSnackbar={pushMessageToSnackbar} /> */}
     </Fragment>
   );
 }

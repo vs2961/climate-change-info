@@ -21,6 +21,9 @@ function App() {
             <Route path="/c">
               <LoggedInComponent />
             </Route>
+            <Route path="/calculate">
+              <LoggedInComponent />
+            </Route>
             <Route>
               <LoggedOutComponent />
             </Route>

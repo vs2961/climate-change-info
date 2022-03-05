@@ -159,22 +159,124 @@ function Settings1(props) {
       <AccordionSummary expandIcon={<ExpandMoreIcon />}>
         <Typography>Retake Carbon Footprint Test</Typography>
       </AccordionSummary>
-      <AccordionSummary>
-        <Typography>
-          Doing this will reset all your progress. You will need to 
-          answer all the initial questions again to determine your carbon footprint.
-          Are you sure?
-        </Typography>
-      </AccordionSummary>
-
+      <AccordionDetails className={classes.dBlock}>
+        <List disablePadding>
+          <Bordered disableVerticalPadding disableBorderRadius>
+            {inputs.map((element, index) => (
+              <ListItem
+                className="listItemLeftPadding"
+                disableGutters
+                divider
+                key={index}
+              >
+                <ListItemText>
+                  <Typography variant="body2">{element.label}</Typography>
+                </ListItemText>
+                <FormControl variant="outlined">
+                  <ListItemSecondaryAction
+                    className={classes.ListItemSecondaryAction}
+                  >
+                    <Select
+                      value={element.state}
+                      onChange={handleChange}
+                      input={
+                        <OutlinedInput
+                          name={element.stateName}
+                          labelWidth={0}
+                          className={classes.numberInput}
+                          classes={{ input: classes.numberInputInput }}
+                        />
+                      }
+                      MenuProps={{ disableScrollLock: true }}
+                    >
+                      {inputOptions.map((innerElement) => (
+                        <MenuItem value={innerElement} key={innerElement}>
+                          {innerElement}
+                        </MenuItem>
+                      ))}
+                    </Select>
+                  </ListItemSecondaryAction>
+                </FormControl>
+              </ListItem>
+            ))}
+            <ListItem className="listItemLeftPadding" disableGutters divider>
+              <ListItemText>
+                <Typography variant="body2">Option 5</Typography>
+              </ListItemText>
+              <FormControl variant="outlined">
+                <ListItemSecondaryAction
+                  className={classes.ListItemSecondaryAction}
+                >
+                  <Select
+                    value={option5}
+                    onChange={handleChange}
+                    input={
+                      <OutlinedInput
+                        name="option5"
+                        labelWidth={0}
+                        className={classes.numberInput}
+                        classes={{ input: classes.numberInputInput }}
+                      />
+                    }
+                    MenuProps={{ disableScrollLock: true }}
+                  >
+                    {[
+                      "Always",
+                      "6 Hours",
+                      "12 Hours",
+                      "1 Day",
+                      "2 Days",
+                      "3 Days",
+                      "1 Week",
+                    ].map((element) => (
+                      <MenuItem value={element} key={element}>
+                        {element}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </ListItemSecondaryAction>
+              </FormControl>
+            </ListItem>
+            <ListItem className="listItemLeftPadding" disableGutters>
+              <ListItemText>
+                <Typography variant="body2">Option 6</Typography>
+              </ListItemText>
+              <FormControl variant="outlined">
+                <ListItemSecondaryAction
+                  className={classes.ListItemSecondaryAction}
+                >
+                  <OutlinedInput
+                    labelWidth={0}
+                    name="option6"
+                    value={option6}
+                    type="number"
+                    onChange={handleChange}
+                    className={classes.numberInput}
+                    classes={{ input: classes.numberInputInput }}
+                    inputProps={{ step: 20 }}
+                  />
+                </ListItemSecondaryAction>
+              </FormControl>
+            </ListItem>
+          </Bordered>
+        </List>
+      </AccordionDetails>
       <AccordionDetails className={classes.accordionDetails}>
+        <Box mr={1}>
+          <Button
+            onClick={onSetDefault}
+            disabled={isSaveLoading || isDefaultLoading}
+          >
+            Default {isDefaultLoading && <ButtonCircularProgress />}
+          </Button>
+        </Box>
         <Button
           variant="contained"
           color="secondary"
           disabled={isSaveLoading || isDefaultLoading}
           onClick={onSubmit}
         >
-          Yes, I'm sure {isSaveLoading && <ButtonCircularProgress />}
+          Save {isSaveLoading && <ButtonCircularProgress />}
         </Button>
       </AccordionDetails>
     </Accordion>

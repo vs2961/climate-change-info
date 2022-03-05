@@ -22,27 +22,27 @@ function Dashboard(props) {
 
   return (
     <Fragment>
-      <StatisticsArea CardChart={CardChart} data={statistics} />
       <Box mt={4}>
         <Typography variant="subtitle1" gutterBottom>
           Your Account
         </Typography>
       </Box>
-      <AccountInformationArea
+      <StatisticsArea CardChart={CardChart} data={statistics} />
+      {/* <AccountInformationArea
         isAccountActivated={isAccountActivated}
         toggleAccountActivation={toggleAccountActivation}
-      />
+      /> */}
       <Box mt={4}>
         <Typography variant="subtitle1" gutterBottom>
           Settings
         </Typography>
       </Box>
       <SettingsArea pushMessageToSnackbar={pushMessageToSnackbar} />
-      <UserDataArea
+      {/* <UserDataArea
         pushMessageToSnackbar={pushMessageToSnackbar}
         targets={targets}
         setTargets={setTargets}
-      />
+      /> */}
     </Fragment>
   );
 }

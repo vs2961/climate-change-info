@@ -56,19 +56,9 @@ function NavBar(props) {
       icon: <HomeIcon className="text-white" />
     },
     {
-      link: "/blog",
-      name: "Blog",
+      link: "/help",
+      name: "How to help",
       icon: <BookIcon className="text-white" />
-    },
-    {
-      name: "Register",
-      onClick: openRegisterDialog,
-      icon: <HowToRegIcon className="text-white" />
-    },
-    {
-      name: "Login",
-      onClick: openLoginDialog,
-      icon: <LockOpenIcon className="text-white" />
     }
   ];
   return (
@@ -82,7 +72,7 @@ function NavBar(props) {
               display="inline"
               color="primary"
             >
-              Wa
+              #Fight
             </Typography>
             <Typography
               variant="h4"
@@ -90,7 +80,15 @@ function NavBar(props) {
               display="inline"
               color="secondary"
             >
-              Ver
+              Climate
+            </Typography>
+            <Typography
+              variant="h4"
+              className={classes.brandText}
+              display="inline"
+              color="primary"
+            >
+              Change
             </Typography>
           </div>
           <div>
@@ -100,7 +98,7 @@ function NavBar(props) {
                 onClick={handleMobileDrawerOpen}
                 aria-label="Open Navigation"
               >
-                <MenuIcon color="primary" />
+                <MenuIcon color="secondary" />
               </IconButton>
             </Hidden>
             <Hidden smDown>

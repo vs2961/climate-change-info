@@ -64,6 +64,7 @@ function Routing(props) {
     selectPosts,
     selectSubscription,
     openAddBalanceDialog,
+    setBalance
   } = props;
   useLocationBlocker();
   return (
@@ -80,6 +81,8 @@ function Routing(props) {
           posts={posts}
           setPosts={setPosts}
           selectPosts={selectPosts}
+          setBalance={setBalance}
+          transactions={transactions}
         />
         <PropsRoute
           path="/c/subscription"
