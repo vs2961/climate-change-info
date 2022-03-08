@@ -2,13 +2,15 @@ import React from "react";
 import PropTypes from "prop-types";
 import { OutlinedInput, withStyles } from "@material-ui/core";
 import currencyPrettyPrint from "../../../shared/functions/currencyPrettyPrint";
+import { textAlign } from "@material-ui/system";
 
 const styles = {
   input: { padding: "0px 9px", cursor: "pointer" },
   outlinedInput: {
-    width: 90,
+    width: 160,
     height: 40,
-    cursor: "pointer"
+    cursor: "pointer",
+    textAlign: "center"
   },
   wrapper: {
     display: "flex",
@@ -21,7 +23,7 @@ function Balance(props) {
   return (
     <div className={classes.wrapper}>
       <OutlinedInput
-        value={balance === null ? "" : currencyPrettyPrint(balance)}
+        value={balance === null ? "" : balance + " kg CO2/year"}
         className={classes.outlinedInput}
         classes={{ input: classes.input }}
         readOnly

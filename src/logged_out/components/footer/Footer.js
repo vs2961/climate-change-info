@@ -16,6 +16,7 @@ import MailIcon from "@material-ui/icons/Mail";
 import WaveBorder from "../../../shared/components/WaveBorder";
 import transitions from "@material-ui/core/styles/transitions";
 import ColoredButton from "../../../shared/components/ColoredButton";
+import { CenterFocusStrong } from "@material-ui/icons";
 
 const styles = theme => ({
   footerInner: {
@@ -35,7 +36,8 @@ const styles = theme => ({
       paddingLeft: theme.spacing(10),
       paddingRight: theme.spacing(10),
       paddingBottom: theme.spacing(10)
-    }
+    },
+    textAlign: "center"
   },
   brandText: {
     fontFamily: "'Baloo Bhaijaan', cursive",
@@ -117,7 +119,7 @@ function Footer(props) {
       <div className={classes.footerInner}>
         <Grid container spacing={isWidthUp("md", width) ? 10 : 5}>
           <Grid item xs={12} md={6} lg={4}>
-            <form>
+            {/* <form>
               <Box display="flex" flexDirection="column">
                 <Box mb={1}>
                   <TextField
@@ -141,12 +143,33 @@ function Footer(props) {
                   Send Message
                 </ColoredButton>
               </Box>
-            </form>
+            </form> */}
+          </Grid>
+          <Grid item xs={12} md={6} lg={4}>
+            <Typography variant="h6" paragraph className="text-white">
+              About the App
+            </Typography>
+            <Typography style={{ color: "#8f9296" }} paragraph>
+              This is an app created for the Synthesis Program at UCSD. Created By Victor Siu.
+            </Typography>
+            <Box display="center">
+              {socialIcons.map((socialIcon, index) => (
+                <Box key={index} mr={index !== socialIcons.length - 1 ? 1 : 0}>
+                  <IconButton
+                    aria-label={socialIcon.label}
+                    className={classes.socialIcon}
+                    href={socialIcon.href}
+                  >
+                    {socialIcon.icon}
+                  </IconButton>
+                </Box>
+              ))}
+            </Box>
           </Grid>
           <Hidden mdDown>
             <Grid item xs={12} md={6} lg={4}>
               <Box display="flex" justifyContent="center">
-                <div>
+                {/* <div>
                   {infos.map((info, index) => (
                     <Box display="flex" mb={1} key={index}>
                       <Box mr={2}>
@@ -169,31 +192,11 @@ function Footer(props) {
                       </Box>
                     </Box>
                   ))}
-                </div>
+                </div> */}
               </Box>
             </Grid>
           </Hidden>
-          <Grid item xs={12} md={6} lg={4}>
-            <Typography variant="h6" paragraph className="text-white">
-              About the App
-            </Typography>
-            <Typography style={{ color: "#8f9296" }} paragraph>
-              This is an app created for the Synthesis Program at UCSD.
-            </Typography>
-            <Box display="flex">
-              {socialIcons.map((socialIcon, index) => (
-                <Box key={index} mr={index !== socialIcons.length - 1 ? 1 : 0}>
-                  <IconButton
-                    aria-label={socialIcon.label}
-                    className={classes.socialIcon}
-                    href={socialIcon.href}
-                  >
-                    {socialIcon.icon}
-                  </IconButton>
-                </Box>
-              ))}
-            </Box>
-          </Grid>
+          
         </Grid>
       </div>
     </footer>

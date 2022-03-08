@@ -76,10 +76,20 @@ function Calculator(props) {
       pushMessageToSnackbar({
         text: "Your answers have been submitted!",
       });
-      //updateCarbonFootprint(answers);
+      updateCarbonFootprint();
       onClose();
     }, 1500);
   }, [setLoading, onClose, pushMessageToSnackbar]);
+
+  function updateCarbonFootprint() {
+    var balance = 0;
+    console.log(answers);
+    balance += (answers[1] / answers[0]) * 12 / 0.214;
+    balance += answers[2] * 286.88;
+    balance += answers[3] * answers[4];
+    setBalance(balance);
+    console.log(balance);
+  }
 
   return (
     <Fragment>
@@ -101,6 +111,7 @@ function Calculator(props) {
             cropperFile={cropperFile}
             onCropperClose={onCropperClose}
             setAnswers={setAnswers}
+            answers={answers}
           />
         }
         actions={

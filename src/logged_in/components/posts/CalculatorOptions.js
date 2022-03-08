@@ -92,6 +92,8 @@ function CalculatorOptions(props) {
     onCropperClose,
     uploadAt,
     onChangeUploadAt,
+    setAnswers,
+    answers
   } = props;
   const [peopleInHouse, setPeopleInHouse] = useState(0);
   const [electricBillCost, setElectricBillCost] = useState(0);
@@ -104,53 +106,28 @@ function CalculatorOptions(props) {
       const { name, value } = event.target;
       switch (name) {
         case "peopleInHouse":
-          setPeopleInHouse(value);
+          setPeopleInHouse(value < 0 ? 0 : value);
           break;
         case "electricBillCost":
-          setElectricBillCost(value);
+          setElectricBillCost(value < 0 ? 0 : value);
           break;
         case "flightCount":
-          setFlightCount(value);
+          setFlightCount(value < 0 ? 0 : value);
           break;
         case "commuteMiles":
-          setCommuteMiles(value);
+          setCommuteMiles(value < 0 ? 0 : value);
           break;
         case "workDays":
-          setWorkDays(value);
+          setWorkDays(value < 0 ? 0 : value);
           break;
         default:
           throw new Error("No branch selected in switch-statement.");
       }
+      console.log(answers);
+      setAnswers([peopleInHouse, electricBillCost, flightCount, commuteMiles, workDays])
     },
-    [setPeopleInHouse, setElectricBillCost, setFlightCount, setCommuteMiles, setWorkDays]
+    [setPeopleInHouse, setElectricBillCost, setFlightCount, setCommuteMiles, setWorkDays, setAnswers]
   );
-
-  const printFile = useCallback(() => {
-    if (files[0]) {
-      return (
-        <div className={classes.imgWrapper}>
-          <img
-            alt="uploaded item"
-            src={files[0].preview}
-            className={classes.img}
-            style={{ height: 148 }}
-          />
-          <div className={classes.floatButtonWrapper}>
-            <IconButton onClick={deleteItem}>
-              <CloseIcon />
-            </IconButton>
-          </div>
-        </div>
-      );
-    }
-    return (
-      <Dropzone accept="image/png, image/jpeg" onDrop={onDrop} fullHeight>
-        <span className={classes.uploadText}>
-          Click / Drop file <br /> here
-        </span>
-      </Dropzone>
-    );
-  }, [onDrop, files, classes, deleteItem]);
 
   const inputs = 
     [
@@ -243,6 +220,7 @@ function CalculatorOptions(props) {
                     value={element.state}
                     onChange={handleChange}
                     type="number"
+                    InputProps={{ inputProps: { min: 0} }}
                     MenuProps={{ disableScrollLock: true }}
                     variant="outlined"
                     className={classes.numberInput}

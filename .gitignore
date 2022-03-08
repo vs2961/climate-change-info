@@ -110,3 +110,5 @@ build/
 #lockfiles
 yarn.lock
 
+# firebase
+firebaseConfig.js

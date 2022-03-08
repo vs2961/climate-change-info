@@ -268,34 +268,34 @@ function NavBar(props) {
                 />
               </Box>
             )}
-            <MessagePopperButton messages={messages} />
+            {/* <MessagePopperButton messages={messages} /> */}
             <ListItem
               disableGutters
               className={classNames(classes.iconListItem, classes.smBordered)}
             >
-              <Avatar
+              {/* <Avatar
                 alt="profile picture"
                 src={`${process.env.PUBLIC_URL}/images/logged_in/profilePicture.jpg`}
                 className={classNames(classes.accountAvatar)}
-              />
+              /> */}
               {isWidthUp("sm", width) && (
                 <ListItemText
                   className={classes.username}
                   primary={
-                    <Typography color="textPrimary">Username</Typography>
+                    <Typography color="textPrimary">Victor S.</Typography>
                   }
                 />
               )}
             </ListItem>
           </Box>
-          <IconButton
+          {/* <IconButton
             onClick={openDrawer}
             color="primary"
             aria-label="Open Sidedrawer"
           >
             <SupervisorAccountIcon />
           </IconButton>
-          <SideDrawer open={isSideDrawerOpen} onClose={closeDrawer} />
+          <SideDrawer open={isSideDrawerOpen} onClose={closeDrawer} /> */}
         </Toolbar>
       </AppBar>
       <Hidden xsDown>
