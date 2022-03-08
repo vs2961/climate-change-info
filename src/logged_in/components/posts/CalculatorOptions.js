@@ -188,7 +188,7 @@ function CalculatorOptions(props) {
       </Typography>
       <List disablePadding>
         <Bordered disableVerticalPadding disableBorderRadius>
-          <ListItem divider disableGutters className="listItemLeftPadding">
+          {/* <ListItem divider disableGutters className="listItemLeftPadding">
             <ListItemText>
               <Typography variant="body2">Upload at</Typography>
             </ListItemText>
@@ -202,7 +202,7 @@ function CalculatorOptions(props) {
                 />
               )}
             </ListItemSecondaryAction>
-          </ListItem>
+          </ListItem> */}
           {inputs.map((element, index) => (
             <ListItem
               className="listItemLeftPadding"

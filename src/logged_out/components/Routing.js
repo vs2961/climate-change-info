@@ -6,12 +6,17 @@ import Home from "./home/Home";
 import Blog from "./blog/Blog";
 import BlogPost from "./blog/BlogPost";
 import useLocationBlocker from "../../shared/functions/useLocationBlocker";
+import { Route } from "react-router-dom";
 
 function Routing(props) {
   const { blogPosts, selectBlog, selectHome } = props;
   useLocationBlocker();
   return (
     <Switch>
+      <Route path='/help' component={() => { 
+        window.location.href = 'https://www.nrdc.org/stories/how-you-can-stop-global-warming'; 
+        return null;
+      }}/>
       {blogPosts.map((post) => (
         <PropsRoute
           path={post.url}
