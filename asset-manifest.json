@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.js": "/climate-change-info/static/js/main.262f8156.js",
-    "static/js/368.69456ea0.chunk.js": "/climate-change-info/static/js/368.69456ea0.chunk.js",
+    "main.js": "/climate-change-info/static/js/main.9a5eb2a9.js",
+    "static/js/368.1b8d346e.chunk.js": "/climate-change-info/static/js/368.1b8d346e.chunk.js",
     "static/js/950.407d3b1f.chunk.js": "/climate-change-info/static/js/950.407d3b1f.chunk.js",
     "static/js/883.a955c787.chunk.js": "/climate-change-info/static/js/883.a955c787.chunk.js",
     "static/css/609.a53bed73.chunk.css": "/climate-change-info/static/css/609.a53bed73.chunk.css",
@@ -23,8 +23,8 @@
     "static/js/957.c8b7972e.chunk.js": "/climate-change-info/static/js/957.c8b7972e.chunk.js",
     "service-worker.js": "/climate-change-info/service-worker.js",
     "index.html": "/climate-change-info/index.html",
-    "main.262f8156.js.map": "/climate-change-info/static/js/main.262f8156.js.map",
-    "368.69456ea0.chunk.js.map": "/climate-change-info/static/js/368.69456ea0.chunk.js.map",
+    "main.9a5eb2a9.js.map": "/climate-change-info/static/js/main.9a5eb2a9.js.map",
+    "368.1b8d346e.chunk.js.map": "/climate-change-info/static/js/368.1b8d346e.chunk.js.map",
     "950.407d3b1f.chunk.js.map": "/climate-change-info/static/js/950.407d3b1f.chunk.js.map",
     "883.a955c787.chunk.js.map": "/climate-change-info/static/js/883.a955c787.chunk.js.map",
     "609.a53bed73.chunk.css.map": "/climate-change-info/static/css/609.a53bed73.chunk.css.map",
@@ -46,6 +46,6 @@
     "957.c8b7972e.chunk.js.map": "/climate-change-info/static/js/957.c8b7972e.chunk.js.map"
   },
   "entrypoints": [
-    "static/js/main.262f8156.js"
+    "static/js/main.9a5eb2a9.js"
   ]
 }
