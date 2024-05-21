@@ -1,9 +1,11 @@
-import React, { Fragment, useState, useCallback } from "react";
+import React, { Fragment, useState, useCallback, useMemo, useEffect } from "react";
 import PropTypes from "prop-types";
 import { Button, Box } from "@material-ui/core";
 import ActionPaper from "../../../shared/components/ActionPaper";
 import ButtonCircularProgress from "../../../shared/components/ButtonCircularProgress";
 import CalculatorOptions from "./CalculatorOptions";
+import { changeFootprint } from "../../../store/footprints";
+import { useDispatch } from "react-redux";
 
 function Calculator(props) {
   const {
@@ -13,14 +15,14 @@ function Calculator(props) {
     DateTimePicker,
     ImageCropper,
     onClose,
-    setBalance,
   } = props;
 
   const [files, setFiles] = useState([]);
   const [uploadAt, setUploadAt] = useState(new Date());
   const [loading, setLoading] = useState(false);
   const [cropperFile, setCropperFile] = useState(null);
-  const [answers, setAnswers] = useState([]);
+  const [bal, setBalance] = useState(0);
+  const dispatch = useDispatch();
 
   const acceptDrop = useCallback(
     (file) => {
@@ -69,26 +71,37 @@ function Calculator(props) {
     },
     [acceptDrop, cropperFile, setCropperFile]
   );
+  
+  function handleSubmitTest() {
+    handleSubmit();
+    console.log(bal);
+    dispatch(changeFootprint("Victor", bal));
+  }
 
   const handleSubmit = useCallback(() => {
     setLoading(true);
+    console.log(bal);
     setTimeout(() => {
       pushMessageToSnackbar({
         text: "Your answers have been submitted!",
       });
-      updateCarbonFootprint();
       onClose();
     }, 1500);
   }, [setLoading, onClose, pushMessageToSnackbar]);
 
-  function updateCarbonFootprint() {
+  function updateCarbonFootprint(answers) {
     var balance = 0;
-    console.log(answers);
     balance += (answers[1] / answers[0]) * 12 / 0.214;
     balance += answers[2] * 286.88;
-    balance += answers[3] * answers[4];
+    if (answers[5] == "Yes") {
+      balance += answers[3] * answers[4] * 0.161;
+    } else if (answers[5] == "No") {
+      balance += answers[3] * answers[4] * 0.435;
+    } else {
+      balance += answers[3] * answers[4] * 0.298;
+    }
     setBalance(balance);
-    console.log(balance);
+    console.log(bal);
   }
 
   return (
@@ -110,8 +123,7 @@ function Calculator(props) {
             ImageCropper={ImageCropper}
             cropperFile={cropperFile}
             onCropperClose={onCropperClose}
-            setAnswers={setAnswers}
-            answers={answers}
+            updateCarbonFootprint={updateCarbonFootprint}
           />
         }
         actions={
@@ -122,7 +134,7 @@ function Calculator(props) {
               </Button>
             </Box>
             <Button
-              onClick={handleSubmit}
+              onClick={handleSubmitTest}
               variant="contained"
               color="secondary"
               disabled={loading}

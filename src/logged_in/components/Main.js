@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useState, useEffect, Fragment } from "react";
+import React, { memo, useCallback, useState, useEffect, Fragment, useContext} from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
 import { withStyles } from "@material-ui/core";
@@ -8,6 +8,9 @@ import ConsecutiveSnackbarMessages from "../../shared/components/ConsecutiveSnac
 import smoothScrollTop from "../../shared/functions/smoothScrollTop";
 import persons from "../dummy_data/persons";
 import LazyLoadAddBalanceDialog from "./subscription/LazyLoadAddBalanceDialog";
+// import FirebaseContext from "../../firebase/firebase";
+import { useSelector } from "react-redux";
+
 
 const styles = (theme) => ({
   main: {
@@ -53,8 +56,9 @@ function Main(props) {
   const [isAddBalanceDialogOpen, setIsAddBalanceDialogOpen] = useState(false);
   const [pushMessageToSnackbar, setPushMessageToSnackbar] = useState(null);
 
-  const [balance, setBalance] = useState(5000);
+  // const { app, api } = useContext(FirebaseContext);
 
+  const balance = useSelector(state => state.users);
 
   const fetchRandomTargets = useCallback(() => {
     const targets = [];
@@ -357,7 +361,6 @@ function Main(props) {
           openAddBalanceDialog={openAddBalanceDialog}
           setTargets={setTargets}
           setPosts={setPosts}
-          setBalance={setBalance}
         />
       </main>
     </Fragment>

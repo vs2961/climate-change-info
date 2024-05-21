@@ -4,6 +4,14 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import theme from "./theme";
 import GlobalStyles from "./GlobalStyles";
 import Pace from "./shared/components/Pace";
+import { Provider } from 'react-redux'
+// import FirebaseProvider from './firebase/firebase'
+
+import { createStore } from 'redux';
+import userApp from "./store/footprints";
+
+const store = createStore(userApp);
+
 
 const LoggedInComponent = lazy(() => import("./logged_in/components/Main"));
 
@@ -17,17 +25,25 @@ function App() {
         <GlobalStyles />
         <Pace color={theme.palette.primary.light} />
         <Suspense fallback={<Fragment />}>
-          <Switch>
-            <Route path="/c">
-              <LoggedInComponent />
-            </Route>
-            <Route path="/calculate">
-              <LoggedInComponent />
-            </Route>
-            <Route>
-              <LoggedOutComponent />
-            </Route>
-          </Switch>
+              <Switch>
+                <Route path="/c">
+                <Provider store={store}>
+                  {/* <FirebaseProvider> */}
+                    <LoggedInComponent />
+                  {/* </FirebaseProvider> */}
+                </Provider>
+                </Route>
+                <Route path="/calculate">
+                  <Provider store={store}>
+                    {/* <FirebaseProvider> */}
+                      <LoggedInComponent />
+                    {/* </FirebaseProvider> */}
+                  </Provider>
+                </Route>
+                <Route>
+                  <LoggedOutComponent />
+                </Route>
+              </Switch>
         </Suspense>
       </MuiThemeProvider>
     </BrowserRouter>

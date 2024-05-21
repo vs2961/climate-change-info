@@ -7,7 +7,6 @@ import { textAlign } from "@material-ui/system";
 const styles = {
   input: { padding: "0px 9px", cursor: "pointer" },
   outlinedInput: {
-    width: 160,
     height: 40,
     cursor: "pointer",
     textAlign: "center"
@@ -20,15 +19,18 @@ const styles = {
 
 function Balance(props) {
   const { balance, classes, openAddBalanceDialog } = props;
+  const width = String(Math.round(balance[0].footprint)).length * 9.5 + 110;
+  console.log(width);
   return (
     <div className={classes.wrapper}>
       <OutlinedInput
-        value={balance === null ? "" : balance + " kg CO2/year"}
+        value={balance === null ? "" : Math.round(balance[0].footprint) + " kg CO2/year"}
         className={classes.outlinedInput}
         classes={{ input: classes.input }}
+        style={{width: width}}
         readOnly
         labelWidth={0}
-        onClick={openAddBalanceDialog}
+        // onClick={openAddBalanceDialog}
       />
     </div>
   );

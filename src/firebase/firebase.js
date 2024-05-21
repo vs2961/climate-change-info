@@ -3,8 +3,7 @@ import firebaseConfig from './firebaseConfig';
 import app from 'firebase/app'
 import 'firebase/database';
 import { useDispatch } from 'react-redux';
-
-import { todoActions } from '../state/todos';
+import { setUsers } from '../store/footprints';
 
 // we create a React Context, for this to be accessible
 // from a component later
@@ -28,15 +27,16 @@ export default ({ children }) => {
             database: app.database(),
 
             api: {
-                getTodos
+                getUsers,
+                addUser
             }
         }
     }
 
     // function to query Todos from the database and
     // fire a Redux action to update the items in real-time
-    function getTodos(){
-        firebase.database.ref('todos').on('value', (snapshot) => {
+    function getUsers(){
+        firebase.database.ref('users').on('value', (snapshot) => {
             const vals = snapshot.val();
             let _records = [];
             for(var key in vals){
@@ -47,8 +47,23 @@ export default ({ children }) => {
             }
             // setTodos is a Redux action that would update the todo store
             // to the _records payload
-            dispatch(setTodos(_records));
+            console.log(_records);
+            dispatch(setUsers(_records));
         })
+    }
+
+    function addUser(name, footprint){
+        firebase.database.ref('users').push().set({
+            name: name,
+            footprint: footprint
+        })
+        .then((doc) => {
+            // nothing to do here since you already have a 
+            // connection pulling updates to Todos
+        })
+        .catch((error) => {
+			console.error(error);
+		})
     }
 
     return (
